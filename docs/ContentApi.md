@@ -1,0 +1,438 @@
+# eps_rapid.ContentApi
+
+All URIs are relative to *https://api.ean.com/2.3*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**chains_get**](ContentApi.md#chains_get) | **GET** /chains | Chain Reference
+[**files_properties_catalog_get**](ContentApi.md#files_properties_catalog_get) | **GET** /files/properties/catalog | Property Catalog File
+[**files_properties_content_get**](ContentApi.md#files_properties_content_get) | **GET** /files/properties/content | Property Content File
+[**properties_content_get**](ContentApi.md#properties_content_get) | **GET** /properties/content | Property Content
+[**properties_property_id_guest_reviews_get**](ContentApi.md#properties_property_id_guest_reviews_get) | **GET** /properties/{property_id}/guest-reviews | Property Guest Reviews
+[**properties_tripadvisor_get**](ContentApi.md#properties_tripadvisor_get) | **GET** /properties/tripadvisor | Property TripAdvisor Information
+
+
+# **chains_get**
+> ChainMap chains_get(accept, accept_encoding, authorization, user_agent, customer_session_id=customer_session_id, billing_terms=billing_terms, partner_point_of_sale=partner_point_of_sale, payment_terms=payment_terms, platform_name=platform_name)
+
+Chain Reference
+
+Returns a complete collection of chains recognized by the Rapid API.  <br>Chains represent a parent company which can have multiple brands associated with it. A brand can only be associated with one chain. For example, Hilton Worldwide is a chain that has multiple associated brands including Doubletree, Hampton Inn and Embassy Suites.  <br>The response is a JSON map where the key is the chain ID and the value is a chain object. Each chain object also contains a map of its related brands.  <br>Note that the set of chain IDs and brand IDs are totally independent of one another. It is possible for a chain and a brand to both use the same number as their ID, but this is just a coincidence that holds no meaning.  <br>Chain and brand names are provided in English only. 
+
+### Example
+```python
+from __future__ import print_function
+import time
+import eps_rapid
+from eps_rapid.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = eps_rapid.ContentApi()
+accept = 'accept_example' # str | Must be `application/json`
+accept_encoding = 'accept_encoding_example' # str | Must be `gzip`
+authorization = 'authorization_example' # str | The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details.
+user_agent = 'user_agent_example' # str | The `User-Agent` header string from the customer's request, as captured by your integration. If you are building an application then the `User-Agent` value should be `{app name}/{app version}`.  Example: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36`  Example: `TravelNow/3.30.112` 
+customer_session_id = 'customer_session_id_example' # str | Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user's session, using a new value for every new customer session.<br> Including this value greatly eases EPS's internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user's session.  (optional)
+billing_terms = 'billing_terms_example' # str | This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  (optional)
+partner_point_of_sale = 'partner_point_of_sale_example' # str | This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+payment_terms = 'payment_terms_example' # str | This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  (optional)
+platform_name = 'platform_name_example' # str | This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+
+try:
+    # Chain Reference
+    api_response = api_instance.chains_get(accept, accept_encoding, authorization, user_agent, customer_session_id=customer_session_id, billing_terms=billing_terms, partner_point_of_sale=partner_point_of_sale, payment_terms=payment_terms, platform_name=platform_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ContentApi->chains_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept** | **str**| Must be &#x60;application/json&#x60; | 
+ **accept_encoding** | **str**| Must be &#x60;gzip&#x60; | 
+ **authorization** | **str**| The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details. | 
+ **user_agent** | **str**| The &#x60;User-Agent&#x60; header string from the customer&#39;s request, as captured by your integration. If you are building an application then the &#x60;User-Agent&#x60; value should be &#x60;{app name}/{app version}&#x60;.  Example: &#x60;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&#x60;  Example: &#x60;TravelNow/3.30.112&#x60;  | 
+ **customer_session_id** | **str**| Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user&#39;s session, using a new value for every new customer session.&lt;br&gt; Including this value greatly eases EPS&#39;s internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user&#39;s session.  | [optional] 
+ **billing_terms** | **str**| This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **partner_point_of_sale** | **str**| This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **payment_terms** | **str**| This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **platform_name** | **str**| This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+
+### Return type
+
+[**ChainMap**](ChainMap.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **files_properties_catalog_get**
+> Link files_properties_catalog_get(accept, accept_encoding, authorization, user_agent, language, customer_session_id=customer_session_id, billing_terms=billing_terms, payment_terms=payment_terms, partner_point_of_sale=partner_point_of_sale, platform_name=platform_name)
+
+Property Catalog File
+
+Returns a link to download the master list of EPS's active properties in the requested language. The response includes high-level details about each property.  <br>This file is in JSONL format and is gzipped. The schema of each JSON object in the JSONL file is a subset of the schema of each JSON object from the Property Content call. The subset of fields included are:    * property_id   * name   * address   * ratings   * location   * phone   * fax   * category   * rank   * business_model   * dates   * statistics   * chain   * brand  <br>Example of a JSONL file with 2 properties: ``` {\"property_id\":\"12345\",\"name\":\"Test Property Name\",\"address\":{\"line_1\":\"123 Main St\",\"line_2\":\"Apt A\",\"city\":\"Springfield\",\"state_province_code\":\"MO\",\"state_province_name\":\"Missouri\",\"postal_code\":\"65804\",\"country_code\":\"US\",\"obfuscated\":false,\"localized\":{\"links\":{\"es-ES\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=es-ES&include=address&property_id=12345\"},\"fr-FR\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=fr-FR&include=address&property_id=12345\"}}}},\"ratings\":{\"property\":{\"rating\":\"3.5\",\"type\":\"Star\"},\"guest\":{\"count\":48382,\"average\":\"3.1\"}},\"location\":{\"coordinates\":{\"latitude\":37.15845,\"longitude\":-93.26838}},\"phone\":\"1-417-862-0153\",\"fax\":\"1-417-863-7249\",\"category\":{\"id\":1,\"name\":\"Hotel\"},\"rank\":42,\"business_model\":{\"expedia_collect\":true,\"property_collect\":false},\"dates\":{\"added\":\"1998-07-19T05:00:00.000Z\",\"updated\":\"2018-03-22T07:23:14.000Z\"},\"statistics\":{\"52\":{\"id\":52,\"name\":\"Total number of rooms - 820\",\"value\":\"820\"},\"54\":{\"id\":54,\"name\":\"Number of floors - 38\",\"value\":\"38\"}},\"chain\":{\"id\":-6,\"name\":\"Hyatt Hotels\"},\"brand\":{\"id\":2209,\"name\":\"Hyatt Place\"}} {\"property_id\":\"67890\",\"name\":\"Test Property Name 2\",\"address\":{\"line_1\":\"123 Main St\",\"line_2\":\"Apt A\",\"city\":\"Springfield\",\"state_province_code\":\"MO\",\"state_province_name\":\"Missouri\",\"postal_code\":\"65804\",\"country_code\":\"US\",\"obfuscated\":false,\"localized\":{\"links\":{\"es-ES\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=es-ES&include=address&property_id=67890\"},\"de-DE\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=de-DE&include=address&property_id=67890\"}}}},\"ratings\":{\"property\":{\"rating\":\"3.5\",\"type\":\"Star\"},\"guest\":{\"count\":7651,\"average\":\"4.3\"}},\"location\":{\"coordinates\":{\"latitude\":37.15845,\"longitude\":-93.26838}},\"phone\":\"1-417-862-0153\",\"fax\":\"1-417-863-7249\",\"category\":{\"id\":1,\"name\":\"Hotel\"},\"rank\":42,\"business_model\":{\"expedia_collect\":true,\"property_collect\":true},\"dates\":{\"added\":\"1998-07-20T05:00:00.000Z\",\"updated\":\"2018-03-22T13:33:17.000Z\"},\"statistics\":{\"52\":{\"id\":52,\"name\":\"Total number of rooms - 820\",\"value\":\"820\"},\"54\":{\"id\":54,\"name\":\"Number of floors - 38\",\"value\":\"38\"}},\"chain\":{\"id\":-5,\"name\":\"Hilton Worldwide\"},\"brand\":{\"id\":358,\"name\":\"Hampton Inn\"}} ``` 
+
+### Example
+```python
+from __future__ import print_function
+import time
+import eps_rapid
+from eps_rapid.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = eps_rapid.ContentApi()
+accept = 'accept_example' # str | Must be `application/json`
+accept_encoding = 'accept_encoding_example' # str | Must be `gzip`
+authorization = 'authorization_example' # str | The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details.
+user_agent = 'user_agent_example' # str | The `User-Agent` header string from the customer's request, as captured by your integration. If you are building an application then the `User-Agent` value should be `{app name}/{app version}`.  Example: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36`  Example: `TravelNow/3.30.112` 
+language = 'language_example' # str | Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: `language=en-US`  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/) 
+customer_session_id = 'customer_session_id_example' # str | Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user's session, using a new value for every new customer session.<br> Including this value greatly eases EPS's internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user's session.  (optional)
+billing_terms = 'billing_terms_example' # str | This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  (optional)
+payment_terms = 'payment_terms_example' # str | This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  (optional)
+partner_point_of_sale = 'partner_point_of_sale_example' # str | This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+platform_name = 'platform_name_example' # str | This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+
+try:
+    # Property Catalog File
+    api_response = api_instance.files_properties_catalog_get(accept, accept_encoding, authorization, user_agent, language, customer_session_id=customer_session_id, billing_terms=billing_terms, payment_terms=payment_terms, partner_point_of_sale=partner_point_of_sale, platform_name=platform_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ContentApi->files_properties_catalog_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept** | **str**| Must be &#x60;application/json&#x60; | 
+ **accept_encoding** | **str**| Must be &#x60;gzip&#x60; | 
+ **authorization** | **str**| The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details. | 
+ **user_agent** | **str**| The &#x60;User-Agent&#x60; header string from the customer&#39;s request, as captured by your integration. If you are building an application then the &#x60;User-Agent&#x60; value should be &#x60;{app name}/{app version}&#x60;.  Example: &#x60;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&#x60;  Example: &#x60;TravelNow/3.30.112&#x60;  | 
+ **language** | **str**| Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: &#x60;language&#x3D;en-US&#x60;  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/)  | 
+ **customer_session_id** | **str**| Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user&#39;s session, using a new value for every new customer session.&lt;br&gt; Including this value greatly eases EPS&#39;s internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user&#39;s session.  | [optional] 
+ **billing_terms** | **str**| This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **payment_terms** | **str**| This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **partner_point_of_sale** | **str**| This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **platform_name** | **str**| This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+
+### Return type
+
+[**Link**](Link.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **files_properties_content_get**
+> Link files_properties_content_get(accept, accept_encoding, authorization, user_agent, language, customer_session_id=customer_session_id, billing_terms=billing_terms, payment_terms=payment_terms, partner_point_of_sale=partner_point_of_sale, platform_name=platform_name)
+
+Property Content File
+
+Returns a link to download all content for all of EPS’s active properties in the requested language. The response includes property-level, room-level and rate-level information.  <br>This file is in JSONL format and is gzipped. The schema of each JSON object in the JSONL file is the same as the schema of each JSON object from the Property Content call.  <br>Example of a JSONL file with 2 properties:   ```   {\"property_id\":\"12345\",\"name\":\"Test Property Name\",\"address\":{\"line_1\":\"123 Main St\",\"line_2\":\"Apt A\",\"city\":\"Springfield\",\"state_province_code\":\"MO\",\"state_province_name\":\"Missouri\",\"postal_code\":\"65804\",\"country_code\":\"US\",\"obfuscated\":false,\"localized\":{\"links\":{\"es-ES\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=es-ES&include=address&property_id=12345\"},\"fr-FR\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=fr-FR&include=address&property_id=12345\"}}}},\"ratings\":{\"property\":{\"rating\":\"3.5\",\"type\":\"Star\"},\"guest\":{\"count\":48382,\"average\":\"3.1\"}},\"location\":{\"coordinates\":{\"latitude\":37.15845,\"longitude\":-93.26838}},\"phone\":\"1-417-862-0153\",\"fax\":\"1-417-863-7249\",\"category\":{\"id\":1,\"name\":\"Hotel\"},\"rank\":42,\"business_model\":{\"expedia_collect\":true,\"property_collect\":false},\"checkin\":{\"24_hour\":\"24-hour check-in\",\"begin_time\":\"3:00 PM\",\"end_time\":\"11:00 PM\",\"instructions\":\"Extra-person charges may apply and vary depending on hotel policy. &lt;br />Government-issued photo identification and a credit card or cash deposit are required at check-in for incidental charges. &lt;br />Special requests are subject to availability upon check-in and may incur additional charges. Special requests cannot be guaranteed. &lt;br />\",\"special_instructions\":\"There is no front desk at this property. To make arrangements for check-in please contact the property ahead of time using the information on the booking confirmation.\",\"min_age\":18},\"checkout\":{\"time\":\"11:00 AM\"},\"fees\":{\"mandatory\":\"<p>You'll be asked to pay the following charges at the hotel:</p> <ul><li>Deposit: USD 50 per day</li><li>Resort fee: USD 29.12 per accommodation, per night</li></ul> The hotel resort fee includes:<ul><li>Fitness center access</li><li>Internet access</li><li>Phone calls</li><li>Additional inclusions</li></ul> <p>We have included all charges provided to us by the property. However, charges can vary, for example, based on length of stay or the room you book. </p>\",\"optional\":\"Fee for in-room wireless Internet: USD 15 per hour (rates may vary)</li> <li>Airport shuttle fee: USD 350 per vehicle (one way)</li>           <li>Rollaway bed fee: USD 175 per night</li>\"},\"policies\":{\"know_before_you_go\":\"Reservations are required for massage services and spa treatments. Reservations can be made by contacting the hotel prior to arrival, using the contact information on the booking confirmation. </li><li>Children 11 years old and younger stay free when occupying the parent or guardian's room, using existing bedding. </li><li>Only registered guests are allowed in the guestrooms. </li> <li>Some facilities may have restricted access. Guests can contact the property for details using the contact information on the booking confirmation. </li> </ul>\"},\"attributes\":{\"general\":{\"2549\":{\"id\":2549,\"name\":\"No elevators\"},\"3357\":{\"id\":3357,\"name\":\"Caters to adults only\"}},\"pets\":{\"51\":{\"id\":51,\"name\":\"Pets allowed\"},\"2809\":{\"id\":2809,\"name\":\"Dogs only\"},\"3321\":{\"id\":3321,\"name\":\"Pet maximum weight in kg is - 24\",\"value\":24}}},\"amenities\":{\"9\":{\"id\":9,\"name\":\"Fitness facilities\"},\"2820\":{\"id\":2820,\"name\":\"Number of indoor pools - 10\",\"value\":10}},\"images\":[{\"caption\":\"Featured Image\",\"hero_image\":true,\"category\":3,\"links\":{\"70px\":{\"method\":\"GET\",\"href\":\"https://i.travelapi.com/hotels/1000000/20000/15300/15237/bef1b976_t.jpg\"}}}],\"onsite_payments\":{\"currency\":\"USD\",\"types\":{\"171\":{\"id\":171,\"name\":\"American Express\"}}},\"rooms\":{\"224829\":{\"id\":\"224829\",\"name\":\"Single Room\",\"descriptions\":{\"overview\":\"<strong>2 Twin Beds</strong><br />269-sq-foot (25-sq-meter) room with mountain views<br /><br /><b>Internet</b> - Free WiFi <br /> <b>Entertainment</b> - Flat-screen TV with cable channels<br /><b>Food & Drink</b> - Refrigerator, coffee/tea maker,  room service, and free bottled water<br /><b>Sleep</b> - Premium bedding <br /><b>Bathroom</b> - Private bathroom, shower, bathrobes, and free toiletries<br /><b>Practical</b> - Safe and desk; cribs/infant beds available on request<br /><b>Comfort</b> - Climate-controlled air conditioning and daily housekeeping<br />Non-Smoking<br />\"},\"amenities\":{\"130\":{\"id\":130,\"name\":\"Refrigerator\"},\"1234\":{\"id\":1234,\"name\":\"Test Amenity - 200\",\"value\":\"200\"}},\"images\":[{\"hero_image\":true,\"category\":21001,\"links\":{\"70px\":{\"method\":\"GET\",\"href\":\"https://i.travelapi.com/hotels/1000000/20000/15300/15237/bef1b976_t.jpg\"}},\"caption\":\"Guestroom\"}],\"bed_groups\":{\"37321\":{\"id\":37321,\"description\":\"1 King Bed\",\"configuration\":[{\"type\":\"KingBed\",\"size\":\"King\",\"quantity\":1}]}},\"area\":{\"square_meters\":20,\"square_feet\":215},\"views\":{\"4146\":{\"id\":4146,\"name\":\"Courtyard view\"}},\"occupancy\":{\"max_allowed\":{\"total\":5,\"children\":2,\"adults\":4},\"age_categories\":{\"Adult\":{\"name\":\"Adult\",\"minimum_age\":9}}}}},\"rates\":{\"333abc\":{\"id\":\"333abc\",\"amenities\":{\"1234\":{\"id\":1234,\"name\":\"Test Amenity - 200\",\"value\":\"200\"},\"2104\":{\"id\":2104,\"name\":\"Full Breakfast\"}}}},\"dates\":{\"added\":\"1998-07-19T05:00:00.000Z\",\"updated\":\"2018-03-22T07:23:14.000Z\"},\"descriptions\":{\"amenities\":\"Don't miss out on the many recreational opportunities, including an outdoor pool, a sauna, and a fitness center. Additional features at this hotel include complimentary wireless Internet access, concierge services, and an arcade/game room.\",\"dining\":\"Grab a bite at one of the hotel's 3 restaurants, or stay in and take advantage of 24-hour room service. Quench your thirst with your favorite drink at a bar/lounge. Buffet breakfasts are available daily for a fee.\",\"renovations\":\"During renovations, the hotel will make every effort to minimize noise and disturbance.  The property will be renovating from 08 May 2017 to 18 May 2017 (completion date subject to change). The following areas are affected:  <ul><li>Fitness facilities</li></ul>\",\"national_ratings\":\"For the benefit of our customers, we have provided a rating based on our rating system.\",\"business_amenities\":\"Featured amenities include complimentary wired Internet access, a 24-hour business center, and limo/town car service. Event facilities at this hotel consist of a conference center and meeting rooms. Free self parking is available onsite.\",\"rooms\":\"Make yourself at home in one of the 334 air-conditioned rooms featuring LCD televisions. Complimentary wired and wireless Internet access keeps you connected, and satellite programming provides entertainment. Private bathrooms with separate bathtubs and showers feature deep soaking bathtubs and complimentary toiletries. Conveniences include phones, as well as safes and desks.\",\"attractions\":\"Distances are calculated in a straight line from the property's location to the point of interest or attraction, and may not reflect actual travel distance. <br /><br /> Distances are displayed to the nearest 0.1 mile and kilometer. <p>Sogo Department Store - 0.7 km / 0.4 mi <br />National Museum of Natural Science - 1.1 km / 0.7 mi <br />Shr-Hwa International Tower - 1.4 km / 0.8 mi <br />Shinkong Mitsukoshi Department Store - 1.5 km / 0.9 mi <br />Taichung Metropolitan Opera House - 1.7 km / 1 mi <br />Tiger City Mall - 1.8 km / 1.1 mi <br />Maple Garden Park - 1.9 km / 1.2 mi <br />National Museum of Fine Arts - 2.1 km / 1.3 mi <br />Feng Chia University - 2.4 km / 1.5 mi <br />Bao An Temple - 2.5 km / 1.6 mi <br />Fengjia Night Market - 2.5 km / 1.6 mi <br />Zhonghua Night Market - 2.7 km / 1.7 mi <br />Chonglun Park - 2.9 km / 1.8 mi <br />Wan He Temple - 2.9 km / 1.8 mi <br />Chungyo Department Store - 3.1 km / 1.9 mi <br /></p><p>The nearest airports are:<br />Taichung (RMQ) - 12 km / 7.5 mi<br />Taipei (TPE-Taoyuan Intl.) - 118.3 km / 73.5 mi<br />Taipei (TSA-Songshan) - 135.5 km / 84.2 mi<br /></p><p></p>\",\"location\":\"This 4-star hotel is within close proximity of Shr-Hwa International Tower and Shinkong Mitsukoshi Department Store.  A stay at Tempus Hotel Taichung places you in the heart of Taichung, convenient to Sogo Department Store and National Museum of Natural Science.\",\"headline\":\"Near National Museum of Natural Science\"},\"statistics\":{\"52\":{\"id\":52,\"name\":\"Total number of rooms - 820\",\"value\":\"820\"},\"54\":{\"id\":54,\"name\":\"Number of floors - 38\",\"value\":\"38\"}},\"airports\":{\"preferred\":{\"iata_airport_code\":\"SGF\"}},\"registry_number\":\"1350K014A0088300\",\"themes\":{\"2337\":{\"id\":2337,\"name\":\"Luxury Hotel\"},\"2341\":{\"id\":2341,\"name\":\"Spa Hotel\"}},\"all_inclusive\":{\"all_rate_plans\":true,\"some_rate_plans\":false,\"details\":\"<p>This resort is all-inclusive. Onsite food and beverages are included in the room price (some restrictions may apply). </p><p><strong>Activities and facilities/equipment</strong><br />Land activities<ul><li>Fitness facilities</li></ul><br />Lessons/classes/games <ul><li>Pilates</li><li>Yoga</li></ul></p><p><strong>Entertainment</strong><ul><li>Onsite entertainment and activities</li><li>Onsite live performances</li></ul></p>\"},\"tax_id\":\"AB-012-987-1234-01\",\"chain\":{\"id\":-6,\"name\":\"Hyatt Hotels\"},\"brand\":{\"id\":2209,\"name\":\"Hyatt Place\"},\"spoken_languages\":{\"vi\":{\"id\":\"vi\",\"name\":\"Vietnamese\"}},\"multi_unit\":true}   {\"property_id\":\"67890\",\"name\":\"Test Property Name 2\",\"address\":{\"line_1\":\"123 Main St\",\"line_2\":\"Apt A\",\"city\":\"Springfield\",\"state_province_code\":\"MO\",\"state_province_name\":\"Missouri\",\"postal_code\":\"65804\",\"country_code\":\"US\",\"obfuscated\":false,\"localized\":{\"links\":{\"es-ES\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=es-ES&include=address&property_id=67890\"},\"de-DE\":{\"method\":\"GET\",\"href\":\"https://api.ean.com/2.3/properties/content?language=de-DE&include=address&property_id=67890\"}}}},\"ratings\":{\"property\":{\"rating\":\"3.5\",\"type\":\"Star\"},\"guest\":{\"count\":7651,\"average\":\"4.3\"}},\"location\":{\"coordinates\":{\"latitude\":37.15845,\"longitude\":-93.26838}},\"phone\":\"1-417-862-0153\",\"fax\":\"1-417-863-7249\",\"category\":{\"id\":1,\"name\":\"Hotel\"},\"rank\":42,\"business_model\":{\"expedia_collect\":true,\"property_collect\":true},\"checkin\":{\"24_hour\":\"24-hour check-in\",\"begin_time\":\"3:00 PM\",\"end_time\":\"11:00 PM\",\"instructions\":\"Extra-person charges may apply and vary depending on hotel policy. &lt;br />Government-issued photo identification and a credit card or cash deposit are required at check-in for incidental charges. &lt;br />Special requests are subject to availability upon check-in and may incur additional charges. Special requests cannot be guaranteed. &lt;br />\",\"special_instructions\":\"There is no front desk at this property. To make arrangements for check-in please contact the property ahead of time using the information on the booking confirmation.\",\"min_age\":18},\"checkout\":{\"time\":\"11:00 AM\"},\"fees\":{\"mandatory\":\"<p>You'll be asked to pay the following charges at the hotel:</p> <ul><li>Deposit: USD 50 per day</li><li>Resort fee: USD 29.12 per accommodation, per night</li></ul> The hotel resort fee includes:<ul><li>Fitness center access</li><li>Internet access</li><li>Phone calls</li><li>Additional inclusions</li></ul> <p>We have included all charges provided to us by the property. However, charges can vary, for example, based on length of stay or the room you book. </p>\",\"optional\":\"Fee for in-room wireless Internet: USD 15 per hour (rates may vary)</li> <li>Airport shuttle fee: USD 350 per vehicle (one way)</li>           <li>Rollaway bed fee: USD 175 per night</li>\"},\"policies\":{\"know_before_you_go\":\"Reservations are required for massage services and spa treatments. Reservations can be made by contacting the hotel prior to arrival, using the contact information on the booking confirmation. </li><li>Children 11 years old and younger stay free when occupying the parent or guardian's room, using existing bedding. </li><li>Only registered guests are allowed in the guestrooms. </li> <li>Some facilities may have restricted access. Guests can contact the property for details using the contact information on the booking confirmation. </li> </ul>\"},\"attributes\":{\"general\":{\"2549\":{\"id\":2549,\"name\":\"No elevators\"},\"3357\":{\"id\":3357,\"name\":\"Caters to adults only\"}},\"pets\":{\"51\":{\"id\":51,\"name\":\"Pets allowed\"},\"2809\":{\"id\":2809,\"name\":\"Dogs only\"},\"3321\":{\"id\":3321,\"name\":\"Pet maximum weight in kg is - 24\",\"value\":24}}},\"amenities\":{\"9\":{\"id\":9,\"name\":\"Fitness facilities\"},\"2820\":{\"id\":2820,\"name\":\"Number of indoor pools - 10\",\"value\":10}},\"images\":[{\"caption\":\"Featured Image\",\"hero_image\":true,\"category\":3,\"links\":{\"70px\":{\"method\":\"GET\",\"href\":\"https://i.travelapi.com/hotels/1000000/20000/15300/15237/bef1b976_t.jpg\"}}}],\"onsite_payments\":{\"currency\":\"USD\",\"types\":{\"171\":{\"id\":171,\"name\":\"American Express\"}}},\"rooms\":{\"224829\":{\"id\":\"224829\",\"name\":\"Single Room\",\"descriptions\":{\"overview\":\"<strong>2 Twin Beds</strong><br />269-sq-foot (25-sq-meter) room with mountain views<br /><br /><b>Internet</b> - Free WiFi <br /> <b>Entertainment</b> - Flat-screen TV with cable channels<br /><b>Food & Drink</b> - Refrigerator, coffee/tea maker,  room service, and free bottled water<br /><b>Sleep</b> - Premium bedding <br /><b>Bathroom</b> - Private bathroom, shower, bathrobes, and free toiletries<br /><b>Practical</b> - Safe and desk; cribs/infant beds available on request<br /><b>Comfort</b> - Climate-controlled air conditioning and daily housekeeping<br />Non-Smoking<br />\"},\"amenities\":{\"130\":{\"id\":130,\"name\":\"Refrigerator\"},\"1234\":{\"id\":1234,\"name\":\"Test Amenity - 200\",\"value\":\"200\"}},\"images\":[{\"hero_image\":true,\"category\":21001,\"links\":{\"70px\":{\"method\":\"GET\",\"href\":\"https://i.travelapi.com/hotels/1000000/20000/15300/15237/bef1b976_t.jpg\"}},\"caption\":\"Guestroom\"}],\"bed_groups\":{\"37321\":{\"id\":37321,\"description\":\"1 King Bed\",\"configuration\":[{\"type\":\"KingBed\",\"size\":\"King\",\"quantity\":1}]}},\"area\":{\"square_meters\":17},\"views\":{\"4134\":{\"id\":4134,\"name\":\"City view\"}},\"occupancy\":{\"max_allowed\":{\"total\":3,\"children\":2,\"adults\":3},\"age_categories\":{\"ChildAgeA\":{\"name\":\"ChildAgeA\",\"minimum_age\":3}}}}},\"rates\":{\"333abc\":{\"id\":\"333abc\",\"amenities\":{\"1234\":{\"id\":1234,\"name\":\"Test Amenity - 200\",\"value\":\"200\"},\"2104\":{\"id\":2104,\"name\":\"Full Breakfast\"}}}},\"dates\":{\"added\":\"1998-07-20T05:00:00.000Z\",\"updated\":\"2018-03-22T13:33:17.000Z\"},\"descriptions\":{\"amenities\":\"Don't miss out on the many recreational opportunities, including an outdoor pool, a sauna, and a fitness center. Additional features at this hotel include complimentary wireless Internet access, concierge services, and an arcade/game room.\",\"dining\":\"Grab a bite at one of the hotel's 3 restaurants, or stay in and take advantage of 24-hour room service. Quench your thirst with your favorite drink at a bar/lounge. Buffet breakfasts are available daily for a fee.\",\"renovations\":\"During renovations, the hotel will make every effort to minimize noise and disturbance.  The property will be renovating from 08 May 2017 to 18 May 2017 (completion date subject to change). The following areas are affected:  <ul><li>Fitness facilities</li></ul>\",\"national_ratings\":\"For the benefit of our customers, we have provided a rating based on our rating system.\",\"business_amenities\":\"Featured amenities include complimentary wired Internet access, a 24-hour business center, and limo/town car service. Event facilities at this hotel consist of a conference center and meeting rooms. Free self parking is available onsite.\",\"rooms\":\"Make yourself at home in one of the 334 air-conditioned rooms featuring LCD televisions. Complimentary wired and wireless Internet access keeps you connected, and satellite programming provides entertainment. Private bathrooms with separate bathtubs and showers feature deep soaking bathtubs and complimentary toiletries. Conveniences include phones, as well as safes and desks.\",\"attractions\":\"Distances are calculated in a straight line from the property's location to the point of interest or attraction, and may not reflect actual travel distance. <br /><br /> Distances are displayed to the nearest 0.1 mile and kilometer. <p>Sogo Department Store - 0.7 km / 0.4 mi <br />National Museum of Natural Science - 1.1 km / 0.7 mi <br />Shr-Hwa International Tower - 1.4 km / 0.8 mi <br />Shinkong Mitsukoshi Department Store - 1.5 km / 0.9 mi <br />Taichung Metropolitan Opera House - 1.7 km / 1 mi <br />Tiger City Mall - 1.8 km / 1.1 mi <br />Maple Garden Park - 1.9 km / 1.2 mi <br />National Museum of Fine Arts - 2.1 km / 1.3 mi <br />Feng Chia University - 2.4 km / 1.5 mi <br />Bao An Temple - 2.5 km / 1.6 mi <br />Fengjia Night Market - 2.5 km / 1.6 mi <br />Zhonghua Night Market - 2.7 km / 1.7 mi <br />Chonglun Park - 2.9 km / 1.8 mi <br />Wan He Temple - 2.9 km / 1.8 mi <br />Chungyo Department Store - 3.1 km / 1.9 mi <br /></p><p>The nearest airports are:<br />Taichung (RMQ) - 12 km / 7.5 mi<br />Taipei (TPE-Taoyuan Intl.) - 118.3 km / 73.5 mi<br />Taipei (TSA-Songshan) - 135.5 km / 84.2 mi<br /></p><p></p>\",\"location\":\"This 4-star hotel is within close proximity of Shr-Hwa International Tower and Shinkong Mitsukoshi Department Store.  A stay at Tempus Hotel Taichung places you in the heart of Taichung, convenient to Sogo Department Store and National Museum of Natural Science.\",\"headline\":\"Near National Museum of Natural Science\"},\"statistics\":{\"52\":{\"id\":52,\"name\":\"Total number of rooms - 820\",\"value\":\"820\"},\"54\":{\"id\":54,\"name\":\"Number of floors - 38\",\"value\":\"38\"}},\"airports\":{\"preferred\":{\"iata_airport_code\":\"SGF\"}},\"registry_number\":\"2350K014A089723\",\"themes\":{\"2337\":{\"id\":2337,\"name\":\"Luxury Hotel\"},\"2341\":{\"id\":2341,\"name\":\"Spa Hotel\"}},\"all_inclusive\":{\"all_rate_plans\":true,\"some_rate_plans\":false,\"details\":\"<p>This resort is all-inclusive. Onsite food and beverages are included in the room price (some restrictions may apply). </p><p><strong>Activities and facilities/equipment</strong><br />Land activities<ul><li>Fitness facilities</li></ul><br />Lessons/classes/games <ul><li>Pilates</li><li>Yoga</li></ul></p><p><strong>Entertainment</strong><ul><li>Onsite entertainment and activities</li><li>Onsite live performances</li></ul></p>\"},\"tax_id\":\"CD-012-987-1234-02\",\"chain\":{\"id\":-5,\"name\":\"Hilton Worldwide\"},\"brand\":{\"id\":358,\"name\":\"Hampton Inn\"},\"spoken_languages\":{\"en\":{\"id\":\"en\",\"name\":\"English\"}},\"multi_unit\":true}   ``` 
+
+### Example
+```python
+from __future__ import print_function
+import time
+import eps_rapid
+from eps_rapid.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = eps_rapid.ContentApi()
+accept = 'accept_example' # str | Must be `application/json`
+accept_encoding = 'accept_encoding_example' # str | Must be `gzip`
+authorization = 'authorization_example' # str | The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details.
+user_agent = 'user_agent_example' # str | The `User-Agent` header string from the customer's request, as captured by your integration. If you are building an application then the `User-Agent` value should be `{app name}/{app version}`.  Example: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36`  Example: `TravelNow/3.30.112` 
+language = 'language_example' # str | Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: `language=en-US`  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/) 
+customer_session_id = 'customer_session_id_example' # str | Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user's session, using a new value for every new customer session.<br> Including this value greatly eases EPS's internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user's session.  (optional)
+billing_terms = 'billing_terms_example' # str | This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  (optional)
+payment_terms = 'payment_terms_example' # str | This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  (optional)
+partner_point_of_sale = 'partner_point_of_sale_example' # str | This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+platform_name = 'platform_name_example' # str | This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+
+try:
+    # Property Content File
+    api_response = api_instance.files_properties_content_get(accept, accept_encoding, authorization, user_agent, language, customer_session_id=customer_session_id, billing_terms=billing_terms, payment_terms=payment_terms, partner_point_of_sale=partner_point_of_sale, platform_name=platform_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ContentApi->files_properties_content_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept** | **str**| Must be &#x60;application/json&#x60; | 
+ **accept_encoding** | **str**| Must be &#x60;gzip&#x60; | 
+ **authorization** | **str**| The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details. | 
+ **user_agent** | **str**| The &#x60;User-Agent&#x60; header string from the customer&#39;s request, as captured by your integration. If you are building an application then the &#x60;User-Agent&#x60; value should be &#x60;{app name}/{app version}&#x60;.  Example: &#x60;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&#x60;  Example: &#x60;TravelNow/3.30.112&#x60;  | 
+ **language** | **str**| Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: &#x60;language&#x3D;en-US&#x60;  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/)  | 
+ **customer_session_id** | **str**| Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user&#39;s session, using a new value for every new customer session.&lt;br&gt; Including this value greatly eases EPS&#39;s internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user&#39;s session.  | [optional] 
+ **billing_terms** | **str**| This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **payment_terms** | **str**| This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **partner_point_of_sale** | **str**| This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **platform_name** | **str**| This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+
+### Return type
+
+[**Link**](Link.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **properties_content_get**
+> PropertyContentMap properties_content_get(accept, accept_encoding, authorization, user_agent, language, customer_session_id=customer_session_id, brand_id=brand_id, business_model=business_model, category_id_exclude=category_id_exclude, chain_id=chain_id, country_code=country_code, date_added_end=date_added_end, date_added_start=date_added_start, date_updated_end=date_updated_end, date_updated_start=date_updated_start, include=include, multi_unit=multi_unit, property_id=property_id, property_rating_max=property_rating_max, property_rating_min=property_rating_min, billing_terms=billing_terms, partner_point_of_sale=partner_point_of_sale, payment_terms=payment_terms, platform_name=platform_name)
+
+Property Content
+
+Search property content for active properties in the requested language.<br><br>  When searching with query parameter, `property_id`, you may request 1 to 250 properties at a time.<br><br>  When searching with query parameters other than `property_id`, the response will be paginated. The response will contain a header, `Link`. The `Link` header contains a single URL to get the immediate next page of results, and follows the [IETF standard](https://tools.ietf.org/html/rfc5988). To get the next page of results, simply follow the `next` URL in the `Link` header without modifying it. When no `Link` header is returned with an empty body and a 200 response code, the pagination has completed. If the link expires, there will be an `expires` link-extension that is the UTC date the link will expire, in ISO 8601 format.<br>    * Example: `<https://api.ean.com/2.3/properties/content?token=MY5S3j36cOcLfLBZjPYQ1abhfc8CqmjmFVzkk7euvWaunE57LLeDgaxm516m>; rel=\"next\"; expires=\"2019-03-05T07:23:14.000Z\"`<br><br>  The response is a JSON map where the key is the property ID and the value is the property object itself, which can include property-level, room-level and rate-level information. 
+
+### Example
+```python
+from __future__ import print_function
+import time
+import eps_rapid
+from eps_rapid.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = eps_rapid.ContentApi()
+accept = 'accept_example' # str | Must be `application/json`
+accept_encoding = 'accept_encoding_example' # str | Must be `gzip`
+authorization = 'authorization_example' # str | The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details.
+user_agent = 'user_agent_example' # str | The `User-Agent` header string from the customer's request, as captured by your integration. If you are building an application then the `User-Agent` value should be `{app name}/{app version}`.  Example: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36`  Example: `TravelNow/3.30.112` 
+language = 'language_example' # str | Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: `language=en-US`  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/) 
+customer_session_id = 'customer_session_id_example' # str | Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user's session, using a new value for every new customer session.<br> Including this value greatly eases EPS's internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user's session.  (optional)
+brand_id = ['brand_id_example'] # list[str] | The ID of the brand you want to search for. This parameter can be supplied multiple times with different values, which will include properties that match any of the requested brand IDs.  Example: `brand_id=123&brand_id=456`  (optional)
+business_model = ['business_model_example'] # list[str] | Search for properties with the requested business model enabled. This parameter can be supplied multiple times with different values, which will return all properties that match any of the requested business models. The value must be lower case.  Example: `business_model=expedia_collect&business_model=property_collect`  (optional)
+category_id_exclude = ['category_id_exclude_example'] # list[str] | Search to exclude properties that do not have the requested [category ID](https://developer.expediapartnersolutions.com/reference/content-reference-lists-2-3/). If this parameter is not supplied, all category IDs are included. This parameter can be supplied multiple times with different values, which will exclude properties that match any of the requested category IDs.  Example: `category_id_exclude=3&category_id_exclude=1`.  (optional)
+chain_id = ['chain_id_example'] # list[str] | The ID of the chain you want to search for. These chain IDs can be positive and negative numbers. This parameter can be supplied multiple times with different values, which will include properties that match any of the requested chain IDs.  Example: `chain_id=-6&chain_id=1`  (optional)
+country_code = ['country_code_example'] # list[str] | Search for properties with the requested country code, in ISO 3166-1 alpha-2 format. This parameter can be supplied multiple times with different values, which will include properties that match any of the requested country codes.  Example: `country_code=US&country_code=JP`.  (optional)
+date_added_end = 'date_added_end_example' # str | Search for properties added on or before the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: `date_added_end=2018-12-31`  (optional)
+date_added_start = 'date_added_start_example' # str | Search for properties added on or after the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: `date_added_start=2018-09-15`  (optional)
+date_updated_end = 'date_updated_end_example' # str | Search for properties updated on or before the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: `date_updated_end=2018-12-31`  (optional)
+date_updated_start = 'date_updated_start_example' # str | Search for properties updated on or after the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: `date_updated_start=2018-09-15`  (optional)
+include = ['include_example'] # list[str] | Option for limiting what fields to return in the response. The value must be lower case. This parameter can be supplied multiple times with different values, which will return a combination of all fields asked for.  Possible values:  * property_ids - Return only the property id of the property object.  * catalog - Return only the property catalog property-level fields.  * address - Returns only the address fields.  Example: `include=property_ids&include=address`  (optional)
+multi_unit = true # bool | Search for multi-unit properties. If this parameter is not supplied, both single-unit and multi-unit properties will be included.  Possible values:   * true - Include only properties that are multi-unit.   * false - Do not include properties that are multi-unit.  (optional)
+property_id = ['property_id_example'] # list[str] | The ID of the property you want to search for. You can provide 1 to 250 property_id parameters.  Example: `property_id=19248&property_id=20321`  (optional)
+property_rating_max = 'property_rating_max_example' # str | Search for properties with a property rating less than or equal to the requested rating. The highest property rating value is 5.0.  Example: `property_rating_max=5.0`  (optional)
+property_rating_min = 'property_rating_min_example' # str | Search for properties with a property rating greater than or equal to the requested rating. The lowest property rating value is 0.0.  Example: `property_rating_min=2.5`  (optional)
+billing_terms = 'billing_terms_example' # str | This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  (optional)
+partner_point_of_sale = 'partner_point_of_sale_example' # str | This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+payment_terms = 'payment_terms_example' # str | This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  (optional)
+platform_name = 'platform_name_example' # str | This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+
+try:
+    # Property Content
+    api_response = api_instance.properties_content_get(accept, accept_encoding, authorization, user_agent, language, customer_session_id=customer_session_id, brand_id=brand_id, business_model=business_model, category_id_exclude=category_id_exclude, chain_id=chain_id, country_code=country_code, date_added_end=date_added_end, date_added_start=date_added_start, date_updated_end=date_updated_end, date_updated_start=date_updated_start, include=include, multi_unit=multi_unit, property_id=property_id, property_rating_max=property_rating_max, property_rating_min=property_rating_min, billing_terms=billing_terms, partner_point_of_sale=partner_point_of_sale, payment_terms=payment_terms, platform_name=platform_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ContentApi->properties_content_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept** | **str**| Must be &#x60;application/json&#x60; | 
+ **accept_encoding** | **str**| Must be &#x60;gzip&#x60; | 
+ **authorization** | **str**| The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details. | 
+ **user_agent** | **str**| The &#x60;User-Agent&#x60; header string from the customer&#39;s request, as captured by your integration. If you are building an application then the &#x60;User-Agent&#x60; value should be &#x60;{app name}/{app version}&#x60;.  Example: &#x60;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&#x60;  Example: &#x60;TravelNow/3.30.112&#x60;  | 
+ **language** | **str**| Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: &#x60;language&#x3D;en-US&#x60;  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/)  | 
+ **customer_session_id** | **str**| Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user&#39;s session, using a new value for every new customer session.&lt;br&gt; Including this value greatly eases EPS&#39;s internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user&#39;s session.  | [optional] 
+ **brand_id** | [**list[str]**](str.md)| The ID of the brand you want to search for. This parameter can be supplied multiple times with different values, which will include properties that match any of the requested brand IDs.  Example: &#x60;brand_id&#x3D;123&amp;brand_id&#x3D;456&#x60;  | [optional] 
+ **business_model** | [**list[str]**](str.md)| Search for properties with the requested business model enabled. This parameter can be supplied multiple times with different values, which will return all properties that match any of the requested business models. The value must be lower case.  Example: &#x60;business_model&#x3D;expedia_collect&amp;business_model&#x3D;property_collect&#x60;  | [optional] 
+ **category_id_exclude** | [**list[str]**](str.md)| Search to exclude properties that do not have the requested [category ID](https://developer.expediapartnersolutions.com/reference/content-reference-lists-2-3/). If this parameter is not supplied, all category IDs are included. This parameter can be supplied multiple times with different values, which will exclude properties that match any of the requested category IDs.  Example: &#x60;category_id_exclude&#x3D;3&amp;category_id_exclude&#x3D;1&#x60;.  | [optional] 
+ **chain_id** | [**list[str]**](str.md)| The ID of the chain you want to search for. These chain IDs can be positive and negative numbers. This parameter can be supplied multiple times with different values, which will include properties that match any of the requested chain IDs.  Example: &#x60;chain_id&#x3D;-6&amp;chain_id&#x3D;1&#x60;  | [optional] 
+ **country_code** | [**list[str]**](str.md)| Search for properties with the requested country code, in ISO 3166-1 alpha-2 format. This parameter can be supplied multiple times with different values, which will include properties that match any of the requested country codes.  Example: &#x60;country_code&#x3D;US&amp;country_code&#x3D;JP&#x60;.  | [optional] 
+ **date_added_end** | **str**| Search for properties added on or before the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: &#x60;date_added_end&#x3D;2018-12-31&#x60;  | [optional] 
+ **date_added_start** | **str**| Search for properties added on or after the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: &#x60;date_added_start&#x3D;2018-09-15&#x60;  | [optional] 
+ **date_updated_end** | **str**| Search for properties updated on or before the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: &#x60;date_updated_end&#x3D;2018-12-31&#x60;  | [optional] 
+ **date_updated_start** | **str**| Search for properties updated on or after the requested UTC date, in ISO 8601 format (YYYY-MM-DD)  Example: &#x60;date_updated_start&#x3D;2018-09-15&#x60;  | [optional] 
+ **include** | [**list[str]**](str.md)| Option for limiting what fields to return in the response. The value must be lower case. This parameter can be supplied multiple times with different values, which will return a combination of all fields asked for.  Possible values:  * property_ids - Return only the property id of the property object.  * catalog - Return only the property catalog property-level fields.  * address - Returns only the address fields.  Example: &#x60;include&#x3D;property_ids&amp;include&#x3D;address&#x60;  | [optional] 
+ **multi_unit** | **bool**| Search for multi-unit properties. If this parameter is not supplied, both single-unit and multi-unit properties will be included.  Possible values:   * true - Include only properties that are multi-unit.   * false - Do not include properties that are multi-unit.  | [optional] 
+ **property_id** | [**list[str]**](str.md)| The ID of the property you want to search for. You can provide 1 to 250 property_id parameters.  Example: &#x60;property_id&#x3D;19248&amp;property_id&#x3D;20321&#x60;  | [optional] 
+ **property_rating_max** | **str**| Search for properties with a property rating less than or equal to the requested rating. The highest property rating value is 5.0.  Example: &#x60;property_rating_max&#x3D;5.0&#x60;  | [optional] 
+ **property_rating_min** | **str**| Search for properties with a property rating greater than or equal to the requested rating. The lowest property rating value is 0.0.  Example: &#x60;property_rating_min&#x3D;2.5&#x60;  | [optional] 
+ **billing_terms** | **str**| This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **partner_point_of_sale** | **str**| This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **payment_terms** | **str**| This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **platform_name** | **str**| This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+
+### Return type
+
+[**PropertyContentMap**](PropertyContentMap.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **properties_property_id_guest_reviews_get**
+> GuestReviews properties_property_id_guest_reviews_get(accept, accept_encoding, authorization, user_agent, property_id, language, customer_session_id=customer_session_id, billing_terms=billing_terms, payment_terms=payment_terms, partner_point_of_sale=partner_point_of_sale, platform_name=platform_name)
+
+Property Guest Reviews
+
+The response is an individual Guest Reviews object containing up to 10 guest reviews, including 1 featured guest review if available, for the requested active property.  <br>To ensure you always show the latest guest reviews, this call should be made whenever a customer looks at the details for a specific property. 
+
+### Example
+```python
+from __future__ import print_function
+import time
+import eps_rapid
+from eps_rapid.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = eps_rapid.ContentApi()
+accept = 'accept_example' # str | Must be `application/json`
+accept_encoding = 'accept_encoding_example' # str | Must be `gzip`
+authorization = 'authorization_example' # str | The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details.
+user_agent = 'user_agent_example' # str | The `User-Agent` header string from the customer's request, as captured by your integration. If you are building an application then the `User-Agent` value should be `{app name}/{app version}`.  Example: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36`  Example: `TravelNow/3.30.112` 
+property_id = 'property_id_example' # str | Expedia Property ID.<br> Example: `19248` 
+language = 'language_example' # str | Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: `language=en-US`  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/) 
+customer_session_id = 'customer_session_id_example' # str | Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user's session, using a new value for every new customer session.<br> Including this value greatly eases EPS's internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user's session.  (optional)
+billing_terms = 'billing_terms_example' # str | This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  (optional)
+payment_terms = 'payment_terms_example' # str | This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  (optional)
+partner_point_of_sale = 'partner_point_of_sale_example' # str | This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+platform_name = 'platform_name_example' # str | This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+
+try:
+    # Property Guest Reviews
+    api_response = api_instance.properties_property_id_guest_reviews_get(accept, accept_encoding, authorization, user_agent, property_id, language, customer_session_id=customer_session_id, billing_terms=billing_terms, payment_terms=payment_terms, partner_point_of_sale=partner_point_of_sale, platform_name=platform_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ContentApi->properties_property_id_guest_reviews_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept** | **str**| Must be &#x60;application/json&#x60; | 
+ **accept_encoding** | **str**| Must be &#x60;gzip&#x60; | 
+ **authorization** | **str**| The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details. | 
+ **user_agent** | **str**| The &#x60;User-Agent&#x60; header string from the customer&#39;s request, as captured by your integration. If you are building an application then the &#x60;User-Agent&#x60; value should be &#x60;{app name}/{app version}&#x60;.  Example: &#x60;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&#x60;  Example: &#x60;TravelNow/3.30.112&#x60;  | 
+ **property_id** | **str**| Expedia Property ID.&lt;br&gt; Example: &#x60;19248&#x60;  | 
+ **language** | **str**| Desired language for the response as a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes. Use only ISO639-1 alpha 2 language codes and ISO3166-1 alpha 2 country codes. See [https://www.w3.org/International/articles/language-tags/](https://www.w3.org/International/articles/language-tags/)  Example: &#x60;language&#x3D;en-US&#x60;  Language Options: [https://developer.expediapartnersolutions.com/reference/language-options/](https://developer.expediapartnersolutions.com/reference/language-options/)  | 
+ **customer_session_id** | **str**| Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user&#39;s session, using a new value for every new customer session.&lt;br&gt; Including this value greatly eases EPS&#39;s internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user&#39;s session.  | [optional] 
+ **billing_terms** | **str**| This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **payment_terms** | **str**| This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **partner_point_of_sale** | **str**| This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **platform_name** | **str**| This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+
+### Return type
+
+[**GuestReviews**](GuestReviews.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **properties_tripadvisor_get**
+> TripAdvisorMap properties_tripadvisor_get(accept, accept_encoding, authorization, user_agent, property_id, customer_session_id=customer_session_id, billing_terms=billing_terms, partner_point_of_sale=partner_point_of_sale, payment_terms=payment_terms, platform_name=platform_name)
+
+Property TripAdvisor Information
+
+Returns TripAdvisor information for the requested active EPS properties. Request 1 to 250 properties at a time. The apiKey used in the authorization header must be set up to have access to [TripAdvisor information](https://developer.expediapartnersolutions.com/reference/tripadvisor/).  <br>The response is a JSON map where the key is the property ID and the value is the TripAdvisor object itself. 
+
+### Example
+```python
+from __future__ import print_function
+import time
+import eps_rapid
+from eps_rapid.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = eps_rapid.ContentApi()
+accept = 'accept_example' # str | Must be `application/json`
+accept_encoding = 'accept_encoding_example' # str | Must be `gzip`
+authorization = 'authorization_example' # str | The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details.
+user_agent = 'user_agent_example' # str | The `User-Agent` header string from the customer's request, as captured by your integration. If you are building an application then the `User-Agent` value should be `{app name}/{app version}`.  Example: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36`  Example: `TravelNow/3.30.112` 
+property_id = ['property_id_example'] # list[str] | The ID of the property you want to search for. You can provide 1 to 250 property_id parameters.  Example: `property_id=19248&property_id=20321` 
+customer_session_id = 'customer_session_id_example' # str | Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user's session, using a new value for every new customer session.<br> Including this value greatly eases EPS's internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user's session.  (optional)
+billing_terms = 'billing_terms_example' # str | This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  (optional)
+partner_point_of_sale = 'partner_point_of_sale_example' # str | This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+payment_terms = 'payment_terms_example' # str | This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  (optional)
+platform_name = 'platform_name_example' # str | This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  (optional)
+
+try:
+    # Property TripAdvisor Information
+    api_response = api_instance.properties_tripadvisor_get(accept, accept_encoding, authorization, user_agent, property_id, customer_session_id=customer_session_id, billing_terms=billing_terms, partner_point_of_sale=partner_point_of_sale, payment_terms=payment_terms, platform_name=platform_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ContentApi->properties_tripadvisor_get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept** | **str**| Must be &#x60;application/json&#x60; | 
+ **accept_encoding** | **str**| Must be &#x60;gzip&#x60; | 
+ **authorization** | **str**| The custom generated authentication header. Refer to our [signature authentication](https://developer.expediapartnersolutions.com/reference/signature-authentication) page for full details. | 
+ **user_agent** | **str**| The &#x60;User-Agent&#x60; header string from the customer&#39;s request, as captured by your integration. If you are building an application then the &#x60;User-Agent&#x60; value should be &#x60;{app name}/{app version}&#x60;.  Example: &#x60;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&#x60;  Example: &#x60;TravelNow/3.30.112&#x60;  | 
+ **property_id** | [**list[str]**](str.md)| The ID of the property you want to search for. You can provide 1 to 250 property_id parameters.  Example: &#x60;property_id&#x3D;19248&amp;property_id&#x3D;20321&#x60;  | 
+ **customer_session_id** | **str**| Insert your own unique value for each user session, beginning with the first API call. Continue to pass the same value for each subsequent API call during the user&#39;s session, using a new value for every new customer session.&lt;br&gt; Including this value greatly eases EPS&#39;s internal debugging process for issues with partner requests, as it explicitly links together request paths for individual user&#39;s session.  | [optional] 
+ **billing_terms** | **str**| This parameter is to specify the terms of how a resulting booking should be billed. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **partner_point_of_sale** | **str**| This parameter is to specify what point of sale is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **payment_terms** | **str**| This parameter is to specify what terms should be used when being paid for a resulting booking. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+ **platform_name** | **str**| This parameter is to specify what platform is being used to shop and book. If this field is needed, the value for this will be provided to you separately.  | [optional] 
+
+### Return type
+
+[**TripAdvisorMap**](TripAdvisorMap.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
